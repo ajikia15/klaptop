@@ -1,4 +1,4 @@
-export default function Navbar() {
+export default async function Navbar() {
   return (
     <div className="flex flex-row w-[95%] py-5 mx-auto">
       <div className="grid grid-cols-[1fr_2fr_1fr] md:grid-cols-[1fr_3fr_1fr_2fr] w-full">
