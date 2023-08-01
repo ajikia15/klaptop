@@ -5,13 +5,13 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-
-import Sidebar from "@/components/_sidebar/Sidebar";
+import UserInfo from "@/components/_navbar/UserInfo";
 export default async function Home() {
   return (
-    <main className="grid grid-cols-[1fr_6fr]">
-      <Sidebar />
-      <div>content goes here</div>
-    </main>
+    <div>
+      <div>
+        <UserInfo />
+      </div>
+    </div>
   );
 }

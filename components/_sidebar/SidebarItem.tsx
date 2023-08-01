@@ -1,3 +1,4 @@
+"use client";
 import {
   Tooltip,
   TooltipContent,
@@ -6,7 +7,6 @@ import {
 } from "@/components/ui/tooltip";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-
 export function MainSidebarItem() {
   const pathname = usePathname();
 
