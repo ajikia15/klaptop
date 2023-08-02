@@ -1,3 +1,3 @@
 export default function UserInfo() {
-  return <div>The user is gay</div>;
+  return <div>not logged in so</div>;
 }

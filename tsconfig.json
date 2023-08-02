@@ -34,7 +34,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "app/api/auth/[...nextauth]/route.js"
+    "app/api/auth/[...nextauth]/route.ts",
+    "components/_navbar/SignInBtn.jsx"
   ],
   "exclude": [
     "node_modules"
