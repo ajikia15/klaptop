@@ -13,7 +13,7 @@
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
@@ -35,7 +35,9 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/api/auth/[...nextauth]/route.ts",
-    "components/_navbar/SignInBtn.jsx"
+    "components/_navbar/SignInBtn.jsx",
+    "components/_homepage/EmblaCarousel.jsx",
+    "components/_homepage/hover.js"
   ],
   "exclude": [
     "node_modules"

@@ -1,7 +1,7 @@
 export default async function Favourites() {
   return (
     <div>
-      <p>here are your favourites dumbass</p>
+      <p>Favourite laptops here</p>
     </div>
   );
 }

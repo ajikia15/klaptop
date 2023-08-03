@@ -21,7 +21,9 @@ export default async function ProfileDetails() {
           <div className="grid place-items-center">V</div>
         </div>
       ) : (
-        <SignInBtn />
+        <>
+          <SignInBtn />
+        </>
       )}
     </>
   );

@@ -5,6 +5,7 @@ import Navbar from "@/components/_navbar/Navbar";
 import Sidebar from "@/components/_sidebar/Sidebar";
 const inter = Inter({ subsets: ["latin"] });
 import { NextAuthProvider } from "./Providers";
+import ChatBar from "@/components/_navbar/ChatBar";
 export const metadata: Metadata = {
   title: "კლაპტოპი",
   description: "harro everinyan",
@@ -22,9 +23,11 @@ export default function RootLayout({
         <NextAuthProvider>
           <main>
             <Navbar />
-            <div className="grid grid-cols-[1fr_6fr]">
+            <div className="grid  grid-cols-[1fr_10fr_1fr] 2xl:grid-cols-[2fr_13fr_2fr]">
+              {/* dont forget to hide the chatbar on smaller screens */}
               <Sidebar />
               {children}
+              <ChatBar />
             </div>
           </main>
         </NextAuthProvider>
