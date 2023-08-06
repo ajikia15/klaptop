@@ -2,6 +2,7 @@ import { options } from "@/app/api/auth/[...nextauth]/options";
 import { getServerSession } from "next-auth/next";
 import SignInBtn from "./SignInOut";
 import { SignOutBtn } from "./SignInOut";
+import UserCard from "./UserCard";
 export default async function ProfileDetails() {
   const session = await getServerSession(options);
   return (
@@ -12,7 +13,7 @@ export default async function ProfileDetails() {
             <p>h</p>
           </div>
           <div className="grid items-end grid-cols-1 grid-rows-2">
-            <p className="">Your profile</p>
+            <UserCard user={session?.user} />
             <p className="text-sm text-accent">
               <SignOutBtn />
             </p>

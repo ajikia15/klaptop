@@ -1,0 +1,28 @@
+im building a website for a  shop which sells laptops. 
+i want to use postgresql. write sql so the table Laptop has these properties:
+
+brand - enum - Lenovo, Acer, Asus, Gigabyte, Cyberpowerpc, HP, Dell.
+model - text.
+exact_model - text. (optional).
+description - text.
+audience - enum - gaming, students, travel, rendering, professional, editing.
+release_year - number.
+gpu - enum - RTX 3050, RTX 3050Ti, RTX 3060, RTX 3060Ti, RTX 3070, RTX 3070Ti, RTX 3080, RTX 3080Ti,
+RTX 2050, RTX 2050Ti, RTX 2060, RTX 2060Ti, RTX 2070, RTX 2070Ti, RTX 2080, RTX 2080Ti,
+GTX 1660, GTX 1660Ti, GTX 1650, GTX 1650Ti, Rx 6700s, Rx6800s, Rx6700M, Rx6800M (optional).
+cpu_brand - enum - intel, amd
+cpu_num - enum - 3, 5, 7, 9
+cpu_model - enum - 11800h, 12900h, 9750h, 6900Hs, 6900Hx, 5800h, 5600h
+keyboard_type - enum - rgb, backlight. (optional)
+additional - enum - faceId, fingerprint. (optional).
+screen_hz - enum - 60, 90, 120, 144, 240.
+screen_resolution - enum - HD, FULL HD, 2K, 2K+, 4K
+screen_inch - enum - 14, 14.5, 15, 15.5, 16, 17, 17.3
+ram_type - enum - ddr4, ddr5
+ram_size - enum - 8, 12, 16, 24, 32, 64
+storage_type - enum - SSD, HDD
+storage_size - enum - 256GB, 512GB, 1TB, 2TB.
+original_box - bool - optional
+new - bool
+visual_condition - number (max 10).
+working_condition - number (max 10) (optional).

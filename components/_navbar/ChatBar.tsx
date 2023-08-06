@@ -1,22 +1,21 @@
 "use client";
-import { motion } from "framer-motion";
+import { useSpring, animated } from "@react-spring/web";
 
 function ChatBar() {
-  const keyframes = {
-    rotateY: [0, 360],
-    transition: {
-      duration: 10,
-      repeat: Infinity,
-      ease: "easeOut",
+  const spin = useSpring({
+    from: {
+      transform: "rotateY(0deg)",
     },
-  };
-
+    to: {
+      transform: "rotateY(360deg)",
+    },
+  });
   return (
     <div className="relative flex items-end justify-center py-12 ">
       <div className="sticky right-0 grid w-16 rounded-full bottom-12 aspect-square place-items-center bg-primary">
-        <motion.div animate={keyframes} className="">
+        <animated.div style={spin}>
           <img src="/chatball.svg" alt="" />
-        </motion.div>
+        </animated.div>
       </div>
     </div>
   );
