@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "@auth/supabase-adapter": "^0.1.2",
+    "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-tooltip": "^1.0.6",
-    "@react-spring/web": "^9.7.3",
     "@supabase/supabase-js": "^2.31.0",
     "@types/jsonwebtoken": "^9.0.2",
     "@types/node": "20.4.5",

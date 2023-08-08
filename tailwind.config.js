@@ -18,13 +18,22 @@ module.exports = {
     extend: {
       colors: {
         'text': '#eaf0f5',
-        'background': '#111314',
         'primary': '#fb5875',
-        'secondary': '#121c26',
+        // 'secondary': '#121c26',
+        'secondary-bg': 'rgb(17 24 39)',
+        'background': 'rgb(17 24 39)',
         'third': 'rgb(156, 163, 175)',
         'accent': '#117fee',
+        'nvidia': '#76B900',
+        'amd': '#ED1C24',
+        'intel': '#014693'
       },
       keyframes: {
+        "shimmer": {
+          "100%": {
+            "transform": "translateX(100%)",
+          },
+        },
         "accordion-down": {
           from: { height: 0 },
           to: { height: "var(--radix-accordion-content-height)" },
