@@ -24,12 +24,12 @@ export default function RootLayout({
         <NextAuthProvider>
           <main>
             <Navbar />
-            <div className="grid  grid-cols-[1fr_10fr_1fr] 2xl:grid-cols-[2fr_13fr_2fr]">
+            <div className="grid  grid-cols-[1fr_12fr] pr-8">
               {/* dont forget to hide the chatbar on smaller screens */}
               <Sidebar />
               {children}
-              <ChatBar />
             </div>
+            {/* <ChatBar /> */}
             <Footer />
           </main>
         </NextAuthProvider>

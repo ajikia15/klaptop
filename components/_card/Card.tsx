@@ -1,8 +1,6 @@
 import Link from "next/link";
-// import { AnimatedTextWord } from "./AnimText";
-// import { AnimatedTextCharacter } from "./AnimText";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import ViewListingBtn from "./ViewListingBtn";
 
 interface laptopCardType {
   id: number;
@@ -36,13 +34,15 @@ function Card(props: cardPropsType) {
   } = props.laptop;
 
   return (
-    <div className="grid p-4 border border-gray-800 shadow-2xl bg bg-background rounded-xl gap-y-4">
-      <div className="grid  bg-white cursor-pointer rounded-xl place-items-center aspect-[4/3]">
-        Picture
+    <div className="grid p-4 transition-all border border-gray-800 shadow-2xl bg bg-background rounded-xl gap-y-4 hover:border-primary/10 hover:shadow-primary/10">
+      <div className="grid bg-black cursor-pointer rounded-xl place-items-center">
+        <img
+          src="https://i.imgur.com/aqW80u1.jpeg"
+          alt=""
+          className="rounded-xl"
+        />
       </div>
       <div className="flex flex-row items-center justify-between text-xl">
-        {/* <AnimatedTextCharacter text={`${brand} ${model}`} /> */}
-        {/* <AnimatedTextWord text={`${brand} ${model}`} /> */}
         <h1 className="font-bold truncate">
           {brand} {model}
         </h1>
@@ -61,7 +61,7 @@ function Card(props: cardPropsType) {
           {cpu_is_intel ? "i" : "R"}
           {cpu_num}-{cpu_model}
         </Badge>
-        <Badge className="bg-background">
+        <Badge className="bg-black">
           {ram_size}GB+ {storage_size}
         </Badge>
       </div>
@@ -71,14 +71,10 @@ function Card(props: cardPropsType) {
           <span className="text-sm text-third">₾</span>
         </h4>
         <Link href={`laptop/${id}`}>
-          <Button className="font-bold transition-opacity bg-primary hover:bg-primary hover:opacity-75">
-            {/* className="w-4 h-4 mr-2" */}
-            &rarr; ნახეთ
-          </Button>
+          <ViewListingBtn />
         </Link>
       </div>
     </div>
   );
 }
-
 export default Card;

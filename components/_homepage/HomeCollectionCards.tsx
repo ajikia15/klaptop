@@ -40,9 +40,23 @@ export default function HomeCollectionCards(props: any) {
           { ascending: false }
         )
         .limit(4); // Request only 4 items
-      setLaptops(data);
+      const extendedData = await fetchImages(data!);
+      setLaptops(extendedData);
       setIsLoading(false);
     };
+
+    const fetchImages = async (laptopData: any[]) => {
+      return Promise.all(
+        laptopData.map(async (laptop: any) => {
+          const { data: images } = await supabase
+            .from("images")
+            .select("image_url")
+            .eq("laptop_id", laptop.id);
+          return { ...laptop, images };
+        })
+      );
+    };
+
     fetchLaptops();
   }, []);
 

@@ -18,10 +18,9 @@ module.exports = {
     extend: {
       colors: {
         'text': '#eaf0f5',
+        'background': '#111827',
         'primary': '#fb5875',
-        // 'secondary': '#121c26',
-        'secondary-bg': 'rgb(17 24 39)',
-        'background': 'rgb(17 24 39)',
+        'secondary': '#121c26',
         'third': 'rgb(156, 163, 175)',
         'accent': '#117fee',
         'nvidia': '#76B900',
