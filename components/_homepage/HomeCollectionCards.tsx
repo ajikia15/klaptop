@@ -66,7 +66,13 @@ export default function HomeCollectionCards(props: any) {
         laptops.map((laptop: any, index: number) => (
           <LazyMotion features={domAnimation} key={index}>
             <m.li
-              className="m-li" // Add your custom class here if needed
+              className={`m-li ${
+                index === 2
+                  ? ""
+                  : index === 3
+                  ? "lg:hidden 2xl:block"
+                  : ""
+              }`} // Add your custom class here if needed
               variants={fadeInAnimationVariants}
               initial="initial"
               whileInView="animate"

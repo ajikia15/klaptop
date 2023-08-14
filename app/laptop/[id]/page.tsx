@@ -1,4 +1,5 @@
 import { supabase } from "@/utils/supabase";
+import { Button } from "@/components/ui/button";
 import SpecsTable from "@/components/_laptop/SpecsTable";
 import AddToFavBtn from "@/components/_card/AddToFavBtn";
 export default async function page({
@@ -19,13 +20,17 @@ export default async function page({
             {data.brand} {data.model}
           </h1>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12">
-            <section>
+            <section className="flex flex-col gap-y-2 ">
               <div className="w-full bg-black aspect-[7/5] rounded-lg"></div>
-              <div></div>
-              <h2 className="text-2xl font-bold">
-                {data.price}
-                <span className="text-base">₾</span>
-              </h2>
+              <div className="flex justify-between">
+                <h2 className="py-2 text-2xl font-bold">
+                  {data.price}
+                  <span className="text-base">₾</span>
+                </h2>
+                <Button className="text-xl font-bold transition-all  bg-primary hover:bg-primary hover:opacity-75">
+                  შეძენა ან დაჯავშნა
+                </Button>
+              </div>
               {/* {data.quantity} */}
               {/* <h4>საწყობშია მხოლოდ 1 </h4> */}
             </section>

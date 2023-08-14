@@ -179,7 +179,8 @@ export default async function SpecsTable({ laptop }: any) {
               ეკრანის რეზოლუცია
             </th>
             <td className="px-6 py-4 text-white">
-              {laptop.screen_resolution}
+              {laptop.resolution_px} (
+              {laptop.screen_resolution})
             </td>
           </tr>
           <tr className="bg-gray-800 border-b border-gray-700 hover:bg-gray-600">
