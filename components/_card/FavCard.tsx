@@ -20,7 +20,7 @@ type TCardProps = {
   laptop: TLaptopCard;
 };
 
-function Card(props: TCardProps) {
+function FavCard(props: TCardProps) {
   const {
     id,
     brand,
@@ -81,4 +81,4 @@ function Card(props: TCardProps) {
     </div>
   );
 }
-export default Card;
+export default FavCard;
