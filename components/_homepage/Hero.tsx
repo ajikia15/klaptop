@@ -1,6 +1,6 @@
 "use client";
 import { useRef } from "react";
-import hover3d from "./hover";
+import hover3d from "./Hover";
 export default function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
   const glassRef = useRef<HTMLDivElement>(null);

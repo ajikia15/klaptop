@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import ViewListingBtn from "./ViewListingBtn";
-
+import AddToFavBtn from "./AddToFavBtn";
 interface laptopCardType {
   id: number;
   brand: string;
@@ -35,12 +35,15 @@ function Card(props: cardPropsType) {
 
   return (
     <div className="grid p-4 transition-all border border-gray-800 shadow-2xl bg bg-background rounded-xl gap-y-4 hover:border-primary/10 hover:shadow-primary/10">
-      <div className="grid bg-black cursor-pointer rounded-xl place-items-center">
+      <div className="relative grid bg-black rounded-xl place-items-center">
         <img
           src="https://i.imgur.com/aqW80u1.jpeg"
           alt=""
           className="rounded-xl"
         />
+        <div className="absolute top-0 right-0 grid w-14 aspect-square place-items-center">
+          <AddToFavBtn id={id} />
+        </div>
       </div>
       <div className="flex flex-row items-center justify-between text-xl">
         <h1 className="font-bold truncate">
@@ -48,7 +51,7 @@ function Card(props: cardPropsType) {
         </h1>
       </div>
 
-      <div className="flex flex-row items-center justify-between">
+      <div className="flex flex-row items-center justify-between overflow-x-scroll">
         <Badge
           className={
             gpu[1] === "T" ? "bg-nvidia" : "bg-amd"

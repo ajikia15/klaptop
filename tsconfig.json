@@ -37,7 +37,7 @@
     "app/api/auth/[...nextauth]/route.ts",
     "components/_navbar/SignInBtn.jsx",
     "components/_homepage/EmblaCarousel.jsx",
-    "components/_homepage/hover.js"
+    "components/_homepage/Hover.js"
   ],
   "exclude": [
     "node_modules"

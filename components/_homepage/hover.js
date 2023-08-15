@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function hover3d(ref, { x = 0, y = 0, z = 0 }) {
+export default function Hover3d(ref, { x = 0, y = 0, z = 0 }) {
     const [coords, setCoords] = useState({ x: 0, y: 0 });
     const [isHovering, setIsHovering] = useState(false);
 

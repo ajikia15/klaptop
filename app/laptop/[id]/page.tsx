@@ -16,26 +16,34 @@ export default async function page({
     <main className="w-11/12 py-8 mx-auto">
       {data ? (
         <>
-          <h1 className="pb-4 text-4xl font-bold">
-            {data.brand} {data.model}
-          </h1>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12">
             <section className="flex flex-col gap-y-2 ">
               <div className="w-full bg-black aspect-[7/5] rounded-lg"></div>
-              <div className="flex justify-between">
+              <SpecsTable laptop={data} />
+            </section>
+            <section className="flex flex-col gap-y-2">
+              <h1 className="pb-4 text-4xl font-bold">
+                {data.brand} {data.model}
+              </h1>
+              <div className="flex items-center justify-between p-3 shadow-2xl bg-secondary rounded-xl">
                 <h2 className="py-2 text-2xl font-bold">
                   {data.price}
                   <span className="text-base">₾</span>
                 </h2>
-                <Button className="text-xl font-bold transition-all  bg-primary hover:bg-primary hover:opacity-75">
-                  შეძენა ან დაჯავშნა
-                </Button>
+                <div className="flex flex-row gap-x-3">
+                  <div className="grid w-12 rounded-full aspect-square place-items-center text-primary">
+                    <AddToFavBtn id={id} />
+                  </div>
+                  <Button className="h-12 text-xl font-bold transition-all bg-primary hover:bg-primary hover:opacity-75 group">
+                    <div className="flex items-center gap-x-1">
+                      დაგვიკავშირდი
+                    </div>
+                  </Button>
+                </div>
               </div>
               {/* {data.quantity} */}
               {/* <h4>საწყობშია მხოლოდ 1 </h4> */}
-            </section>
-            <section>
-              <SpecsTable laptop={data} />
+              {data.description}
             </section>
           </div>
         </>
@@ -59,7 +67,4 @@ export default async function page({
       )}
     </main>
   );
-}
-{
-  /* <AddToFavBtn id={id} /> */
 }
