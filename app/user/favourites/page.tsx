@@ -67,16 +67,14 @@ export default function Favourites() {
   }, [session]);
 
   return (
-    <div>
-      <h1>Favourite Laptops</h1>
-      <ul>
+    <div className="w-full max-w-3xl mx-auto xl:max-w-6xl lg:max-w-4xl">
+      <h1 className="font-2xl">
+        {session?.user.name}Favourite Laptops
+      </h1>
+      <ul className="grid w-full grid-cols-1 my-16 gap-y-4">
         {favoriteLaptops.map((favorite: any) => (
           <li key={favorite.id}>
-            <p>Laptop ID: {favorite.id}</p>
-            <p>Brand: {favorite.brand}</p>
-            <p>Price: {favorite.price}</p>
-            <p>Model: {favorite.model}</p>
-            {/* Include other properties here */}
+            <FavCard laptop={favorite} />
           </li>
         ))}
       </ul>
