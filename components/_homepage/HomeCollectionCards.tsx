@@ -40,21 +40,8 @@ export default function HomeCollectionCards(props: any) {
           { ascending: false }
         )
         .limit(4); // Request only 4 items
-      const extendedData = await fetchImages(data!);
-      setLaptops(extendedData);
+      setLaptops(data);
       setIsLoading(false);
-    };
-
-    const fetchImages = async (laptopData: any[]) => {
-      return Promise.all(
-        laptopData.map(async (laptop: any) => {
-          const { data: images } = await supabase
-            .from("images")
-            .select("image_url")
-            .eq("laptop_id", laptop.id);
-          return { ...laptop, images };
-        })
-      );
     };
 
     fetchLaptops();
@@ -67,17 +54,14 @@ export default function HomeCollectionCards(props: any) {
           <LazyMotion features={domAnimation} key={index}>
             <m.li
               className={`m-li ${
-                index === 2
-                  ? ""
-                  : index === 3
-                  ? "lg:hidden 2xl:block"
-                  : ""
+                index === 2 ? "" : index === 3 ? "lg:hidden 2xl:block" : ""
               }`} // Add your custom class here if needed
               variants={fadeInAnimationVariants}
               initial="initial"
               whileInView="animate"
               viewport={{ once: true }}
-              custom={index}>
+              custom={index}
+            >
               <Card laptop={laptop} />
             </m.li>
           </LazyMotion>
