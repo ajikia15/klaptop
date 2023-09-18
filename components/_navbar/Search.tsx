@@ -1,10 +1,18 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
+<<<<<<< HEAD
 import { useSearchParams } from "next/navigation";
 
 export default function Search() {
   const searchParams = useSearchParams();
+=======
+import { useSearchParams } from "next/navigation";
+import { useRouter } from 'next/navigation'
+export default function Search() {
+  const router= useRouter()
+  const searchParams = useSearchParams();
+>>>>>>> a28cf21 (Filtering functionality done)
   const keyword = searchParams.get("keyword")?.toString();
   const [userInput, setUserInput] = useState(keyword || "");
   const handleKeyWordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -16,7 +24,16 @@ export default function Search() {
   };
   const deactivateField = () => {
     setFieldActive(false);
+<<<<<<< HEAD
   };
+=======
+  };
+  const handleKeyDown = (event) =>{
+     if (event.key === 'Enter') {
+         router.push(`/search?keyword=${encodeURIComponent(userInput)}`);
+    }
+  }
+>>>>>>> a28cf21 (Filtering functionality done)
   return (
     <div className="flex items-center justify-center lg:justify-start ">
       <div
@@ -30,7 +47,12 @@ export default function Search() {
           value={userInput}
           onFocus={activateField}
           onBlur={deactivateField}
+<<<<<<< HEAD
           onChange={handleKeyWordChange}
+=======
+          onChange={handleKeyWordChange}
+          onKeyDown={handleKeyDown}
+>>>>>>> a28cf21 (Filtering functionality done)
           className="w-full h-[94%] outline-none y transition-all bg-secondary text-text group-hover:placeholder-text cursor-pointer "
         />
         <Link

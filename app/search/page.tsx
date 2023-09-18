@@ -47,7 +47,14 @@ export default function page() {
   const [laptops, setLaptops] = useState<any>([]);
   const fetchLaptops = async () => {
     let query = supabase.from("laptops").select("id,searchkey,brand,model,gpu");
+<<<<<<< HEAD
 
+=======
+    if (keyword)
+    {
+      query = query.filter('searchkey', 'ilike', `%${keyword}%`)
+    }
+>>>>>>> a28cf21 (Filtering functionality done)
     if (checkedFilters.brands.length !== 0) {
       query = query.filter(
         "brand",
@@ -105,6 +112,7 @@ export default function page() {
           releaseYears: releaseYears.map((item) => item.release_year),
         }));
 
+<<<<<<< HEAD
       const { data: screenHz, error: screenHzError } = await supabase
         .from("distinct_screen_hz")
         .select("screen_hz");
@@ -125,24 +133,61 @@ export default function page() {
 
       const { data: ramSizes, error: ramSizesError } = await supabase
         .from("distinct_ram_size")
+=======
+      const { data: screenHzs, error: screenHzsError } = await supabase
+        .from("distinct_screen_hz")
+        .select("screen_hz");
+      if (!screenHzsError)
+        setFilters((prevFilters) => ({
+          ...prevFilters,
+          screenHzs: screenHzs.map((item) => item.screen_hz),
+        }));
+
+      const { data: screenInchs, error: screenInchsError } = await supabase
+        .from("distinct_screen_inch")
+        .select("screen_inch");
+      if (!screenInchsError)
+        setFilters((prevFilters) => ({
+          ...prevFilters,
+          screenInchs: screenInchs.map((item) => item.screen_inch),
+        }))
+        ;
+
+      const { data: ramSizes, error: ramSizesError } = await supabase
+        .from("distinct_ram_sizes")
+>>>>>>> a28cf21 (Filtering functionality done)
         .select("ram_size");
       if (!ramSizesError)
         setFilters((prevFilters) => ({
           ...prevFilters,
           ramSizes: ramSizes.map((item) => item.ram_size),
         }));
+<<<<<<< HEAD
 
       const { data: storageSizes, error: storageSizesError } = await supabase
         .from("distinct_storage_size")
+=======
+     
+      const { data: storageSizes, error: storageSizesError } = await supabase
+        .from("distinct_storage_sizes")
+>>>>>>> a28cf21 (Filtering functionality done)
         .select("storage_size");
       if (!storageSizesError)
         setFilters((prevFilters) => ({
           ...prevFilters,
           storageSizes: storageSizes.map((item) => item.storage_size),
+<<<<<<< HEAD
         }));
 
       const { data: storageTypes, error: storageTypesError } = await supabase
         .from("distinct_storage_type")
+=======
+        }));
+        
+
+      const { data: storageTypes, error: storageTypesError } = await supabase
+        .from("distinct_storage_types")
+>>>>>>> a28cf21 (Filtering functionality done)
         .select("storage_type");
       if (!storageTypesError)
         setFilters((prevFilters) => ({
@@ -161,7 +206,11 @@ export default function page() {
 
       const { data: screenResolutions, error: screenResolutionsError } =
         await supabase
+<<<<<<< HEAD
           .from("distinct_screen_resolution")
+=======
+          .from("distinct_screen_resolutions")
+>>>>>>> a28cf21 (Filtering functionality done)
           .select("screen_resolution");
       if (!screenResolutionsError)
         setFilters((prevFilters) => ({
@@ -169,7 +218,11 @@ export default function page() {
           screenResolutions: screenResolutions.map(
             (item) => item.screen_resolution
           ),
+<<<<<<< HEAD
         }));
+=======
+        }));
+>>>>>>> a28cf21 (Filtering functionality done)
       setIsFiltersLoading(false);
     };
     fetchFilters();
@@ -216,7 +269,11 @@ export default function page() {
           };
         });
         break;
+<<<<<<< HEAD
       // Add more cases for other filter types as needed
+=======
+      // TODO finish other type of filter selection actions
+>>>>>>> a28cf21 (Filtering functionality done)
       default:
         alert("Unknown filter type: " + filterType);
     }
@@ -288,8 +345,140 @@ export default function page() {
               {releaseYear}
             </label>
           </li>
+<<<<<<< HEAD
         ))}
       </ul>
+=======
+        ))}
+        <li>Storage Size</li>
+        {filters.storageSizes.map((storageSize) => (
+          <li key={storageSize} className="flex items-center space-x-2">
+            <Checkbox
+              id={storageSize}
+              className="border-text "
+              checked={
+                checkedFilters.storageSizes.includes(storageSize) || false
+              }
+              onClick={() =>
+                handleBrandCheckboxChange(storageSize, "storageSizes")
+              }
+            />
+            <label
+              htmlFor={storageSize}
+              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            >
+              {storageSize}
+            </label>
+          </li>
+        ))}
+        <li>Ram Size</li>
+        {filters.ramSizes.map((ramSize) => (
+          <li key={ramSize} className="flex items-center space-x-2">
+            <Checkbox
+              id={ramSize}
+              className="border-text "
+              checked={
+                checkedFilters.ramSizes.includes(ramSize) || false
+              }
+              onClick={() =>
+                handleBrandCheckboxChange(ramSize, "ramSizes")
+              }
+            />
+            <label
+              htmlFor={ramSize}
+              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            >
+              {ramSize}GB
+            </label>
+          </li>
+        ))}
+        <li>Storage Types</li>
+        {filters.storageTypes.map((storageType) => (
+          <li key={storageType} className="flex items-center space-x-2">
+            <Checkbox
+              id={storageType}
+              className="border-text "
+              checked={
+                checkedFilters.storageTypes.includes(storageType) || false
+              }
+              onClick={() =>
+                handleBrandCheckboxChange(storageType, "storageTypes")
+              }
+            />
+            <label
+              htmlFor={storageType}
+              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            >
+              {storageType}
+            </label>
+          </li>
+        ))}
+                <li>Screen Size</li>
+        {filters.screenInchs.map((screenInch) => (
+          <li key={screenInch} className="flex items-center space-x-2">
+            <Checkbox
+              id={screenInch}
+              className="border-text "
+              checked={
+                checkedFilters.screenInchs.includes(screenInch) || false
+              }
+              onClick={() =>
+                handleBrandCheckboxChange(screenInch, "screenInchs")
+              }
+            />
+            <label
+              htmlFor={screenInch}
+              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            >
+              {screenInch}"
+            </label>
+          </li>
+        ))}
+        <li>Screen Refresh Rate</li>
+        {filters.screenHzs.map((screenHz) => (
+          <li key={screenHz} className="flex items-center space-x-2">
+            <Checkbox
+              id={screenHz}
+              className="border-text "
+              checked={
+                checkedFilters.screenHzs.includes(screenHz) || false
+              }
+              onClick={() =>
+                handleBrandCheckboxChange(screenHz, "screenHzs")
+              }
+            />
+            <label
+              htmlFor={screenHz}
+              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            >
+              {screenHz}Hz
+            </label>
+          </li>
+        ))}
+        <li>Screen Resolution</li>
+        {filters.screenResolutions.map((screenResolution) => (
+          <li key={screenResolution} className="flex items-center space-x-2">
+            <Checkbox
+              id={screenResolution}
+              className="border-text "
+              checked={
+                checkedFilters.screenResolutions.includes(screenResolution) || false
+              }
+              onClick={() =>
+                handleBrandCheckboxChange(screenResolution, "screenResolutions")
+              }
+            />
+            <label
+              htmlFor={screenResolution}
+              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            >
+              {screenResolution}
+            </label>
+          </li>
+        ))}
+      </ul>
+      
+>>>>>>> a28cf21 (Filtering functionality done)
       <ul>
         {isLoading ? (
           <p>Loading...</p>
