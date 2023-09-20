@@ -3,6 +3,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { supabase } from "@/utils/supabase";
+import { useRouter } from "next/navigation";
 interface iFilters {
   brands: string[];
   gpus: string[];
@@ -16,6 +17,7 @@ interface iFilters {
   screenResolutions: string[];
 }
 export default function page() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const keyword = searchParams.get("keyword");
   const [isFiltersLoading, setIsFiltersLoading] = useState(true);
@@ -74,6 +76,21 @@ export default function page() {
         "screen_hz",
         "in",
         `(${checkedFilters.screenHzs.join(",")})`
+      );
+    }
+
+    if (checkedFilters.screenInchs.length !== 0) {
+      query = query.filter(
+        "screen_inch",
+        "in",
+        `(${checkedFilters.screenInchs.join(",")})`
+      );
+    }
+    if (checkedFilters.screenResolutions.length !== 0) {
+      query = query.filter(
+        "screen_resolution",
+        "in",
+        `(${checkedFilters.screenResolutions.join(",")})`
       );
     }
     const { data, error } = await query;
@@ -297,25 +314,64 @@ export default function page() {
           };
         });
         break;
+      case "screenInchs":
+        setCheckedFilters((prevFilters) => {
+          const updatedScreenInchs = prevFilters.screenInchs.includes(selected)
+            ? prevFilters.screenInchs.filter(
+                (screenInch) => screenInch !== selected
+              )
+            : [...prevFilters.screenInchs, selected];
+
+          return {
+            ...prevFilters,
+            screenInchs: updatedScreenInchs,
+          };
+        });
+        break;
+      case "screenResolutions":
+        setCheckedFilters((prevFilters) => {
+          const updatedScreenResolutions =
+            prevFilters.screenResolutions.includes(selected)
+              ? prevFilters.screenResolutions.filter(
+                  (screenInch) => screenInch !== selected
+                )
+              : [...prevFilters.screenResolutions, selected];
+
+          return {
+            ...prevFilters,
+            screenResolutions: updatedScreenResolutions,
+          };
+        });
+        break;
       default:
         alert("Unknown filter type: " + filterType);
     }
   };
-
+  const handleKeywordErase = () => {
+    router.push(`/search?keyword=`);
+  };
   return (
     <main>
-      <h1 className="font-bold text-2xl">You are looking for: {keyword}</h1>
+      {keyword && keyword.length > 0 && (
+        <>
+          <h1 className="font-bold text-2xl">თქვენ ეძებთ: {keyword}-ს</h1>
+          <button onClick={handleKeywordErase}>
+            <p>
+              მეტი შედეგის სანახავად
+              <span className="underline">გაასუფთავეთ </span>
+              საძიებო ველი
+            </p>
+          </button>
+        </>
+      )}
 
       <ul>
-        <button onClick={fetchLaptops} className="underline">
-          To see more results clear the keyword
-        </button>
-        <li>Filters</li>
+        <li>ფილტრები</li>
         {isFiltersLoading ? (
           <div role="status">
             <svg
               aria-hidden="true"
-              className="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+              className="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-primary"
               viewBox="0 0 100 101"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
