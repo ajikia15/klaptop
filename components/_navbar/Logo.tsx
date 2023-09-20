@@ -1,52 +1,19 @@
-"use client";
-import { motion } from "framer-motion";
-
-export default function Logo() {
+export default async function Logo() {
   return (
-    <motion.svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="48"
-      height="48"
-      className={"text-primary"}
-      viewBox="0 0 48 48"
-      initial={{ opacity: 0, scale: 0.5 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.5 }}>
-      <g
-        fill="none"
-        stroke="currentColor"
-        stroke-linejoin="round"
-        stroke-width="4">
-        <motion.path
-          d="M44 28H28v16h16V28Z"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.8 }}
+    <div className="rounded-full flex max-w-[132px] items-center space-x-2 px-3 py-2 bg-primary bg-opacity-30">
+      <svg
+        className="text-primary"
+        xmlns="http://www.w3.org/2000/svg"
+        width="26"
+        height="26"
+        viewBox="0 0 24 24"
+      >
+        <path
+          fill="currentColor"
+          d="M15 7.5V2H9v5.5l3 3l3-3zM7.5 9H2v6h5.5l3-3l-3-3zM9 16.5V22h6v-5.5l-3-3l-3 3zM16.5 9l-3 3l3 3H22V9h-5.5z"
         />
-        <motion.path
-          d="M13 4l9 16H4l9-16Z"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        />
-        <motion.path
-          d="M36 20a8 8 0 1 0 0-16a8 8 0 0 0 0 16Z"
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.5 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-        />
-        <motion.path
-          stroke-linecap="round"
-          d="m4 28l16 16m0-16L4 44"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        />
-      </g>
-    </motion.svg>
+      </svg>
+      <p className="text-base font-bold">Klaptopi</p>
+    </div>
   );
 }

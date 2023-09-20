@@ -9,8 +9,11 @@ export default function ViewListingBtn() {
   };
   return (
     <Button
-      className="font-bold transition-opacity bg-primary hover:bg-primary hover:opacity-75"
-      onClick={handleClick}>
+  className="font-bold transition-all bg-primary
+   hover:bg-primary drop-shadow-xl drop-shadow-primary shadow-primary"
+  onClick={handleClick}
+
+>
       {/* className="w-4 h-4 mr-2" */}
       {isLoading ? (
         <div

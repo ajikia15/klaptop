@@ -97,7 +97,7 @@ function Card(props: TCardProps) {
           {price}
           <span className="text-sm text-third">₾</span>
         </h4>
-        <Link href={`laptop/${id}`}>
+        <Link href={`laptop/${id}`} target="_blank">
           <ViewListingBtn />
         </Link>
       </div>
