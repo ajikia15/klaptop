@@ -1,7 +1,8 @@
 import { supabase } from "@/utils/supabase";
-import { Button } from "@/components/ui/button";
+import { ImageSlider } from "./ImageSlider";
 import SpecsTable from "@/components/_laptop/SpecsTable";
 import AddToFavBtn from "@/components/_card/AddToFavBtn";
+import "@/components/ui/style.css";
 import {
   Accordion,
   AccordionContent,
@@ -25,7 +26,7 @@ export default async function page({
         <>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12">
             <section className="flex flex-col gap-y-2 ">
-              <div className="w-full bg-black aspect-[7/5] rounded-lg"></div>
+              <ImageSlider id={id} />
               <div className="hidden lg:block">
                 <SpecsTable laptop={data} />
               </div>
@@ -44,11 +45,9 @@ export default async function page({
                     <div className="grid w-12 rounded-full aspect-square place-items-center text-primary">
                       <AddToFavBtn id={id} />
                     </div>
-                    <Button className="h-12 text-xl font-bold transition-all bg-primary hover:bg-primary hover:opacity-75 group">
-                      <div className="flex items-center gap-x-1">
-                        დაგვიკავშირდი
-                      </div>
-                    </Button>
+                    <button className="button group">
+                      <p className="text-text font-bold text-lg">იყიდე</p>
+                    </button>
                   </div>
                 </div>
                 {/* {data.quantity} */}

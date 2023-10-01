@@ -2,10 +2,10 @@
 module.exports = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
   ],
   theme: {
     container: {
@@ -17,20 +17,20 @@ module.exports = {
     },
     extend: {
       colors: {
-        'text': '#eaf0f5',
-        'background': '#111827',
-        'primary': '#fb5875',
-        'secondary': '#121c26',
-        'third': 'rgb(156, 163, 175)',
-        'accent': '#117fee',
-        'nvidia': '#76B900',
-        'amd': '#ED1C24',
-        'intel': '#014693'
+        text: "#eaf0f5",
+        background: "#111827",
+        primary: "#fb5875",
+        secondary: "#121c26",
+        third: "rgb(156, 163, 175)",
+        accent: "#117fee",
+        nvidia: "#76B900",
+        amd: "#ED1C24",
+        intel: "#014693",
       },
       keyframes: {
-        "shimmer": {
+        shimmer: {
           "100%": {
-            "transform": "translateX(100%)",
+            transform: "translateX(100%)",
           },
         },
         "accordion-down": {
@@ -48,5 +48,19 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
-}
+  plugins: [
+    require("tailwindcss-animate"),
+    function ({ addUtilities }) {
+      const newUtilities = {
+        ".scrollbar-hide::-webkit-scrollbar": {
+          display: "none",
+        },
+        ".scrollbar-hide": {
+          "-ms-overflow-style": "none",
+          "scrollbar-width": "none",
+        },
+      };
+      addUtilities(newUtilities);
+    },
+  ],
+};

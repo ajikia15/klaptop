@@ -61,7 +61,7 @@ function Card(props: TCardProps) {
 
     fetchImages();
   }, [id]);
-  console.log(images[0]);
+  
   return (
     <div className="grid p-4 transition-all border border-gray-800 shadow-2xl bg bg-background rounded-xl gap-y-4 hover:border-primary/10 hover:shadow-primary/10">
       <div className="relative grid bg-black rounded-xl place-items-center">
