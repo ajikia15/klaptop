@@ -32,6 +32,7 @@ export const ImageSlider = ({ id }: { id: number }) => {
 
     fetchImages();
   }, [id]);
+
   useEffect(() => {
     if (parentContainerRef.current && activeImageRef.current) {
       const parentContainer = parentContainerRef.current;
@@ -39,35 +40,53 @@ export const ImageSlider = ({ id }: { id: number }) => {
       const activeImagePosition = activeImage.getBoundingClientRect();
       const parentContainerPosition = parentContainer.getBoundingClientRect();
 
+      // Calculate the position to center the active image
+      const scrollLeftPosition =
+        activeImagePosition.left -
+        parentContainerPosition.left -
+        (parentContainerPosition.width - activeImagePosition.width) / 2;
+
       parentContainer.scrollTo({
-        left: activeImagePosition.left - parentContainerPosition.left,
+        left: scrollLeftPosition,
         behavior: "smooth",
       });
     }
   }, [activeImage]);
+
   const nextImage = () => {
     if (activeImage === images.length - 1) {
       return;
     }
-
     setActiveImage((prevIndex) => prevIndex + 1);
   };
   const previousImage = () => {
     if (activeImage === 0) {
       return;
     }
-
     setActiveImage((prevIndex) => prevIndex - 1);
   };
-  const moveContainerLeft = () => {
-    return;
+  const scrollContainerLeft = () => {
+    if (parentContainerRef.current) {
+      const parentContainer = parentContainerRef.current;
+      parentContainer.scrollBy({
+        left: -400, // Adjust the value to control left scrolling amount
+        behavior: "smooth",
+      });
+    }
   };
-  const moveContainerRight = () => {
-    return;
+
+  const scrollContainerRight = () => {
+    if (parentContainerRef.current) {
+      const parentContainer = parentContainerRef.current;
+      parentContainer.scrollBy({
+        left: 400, // Adjust the value to control right scrolling amount
+        behavior: "smooth",
+      });
+    }
   };
   return (
-    <>
-      <div className="w-full bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 aspect-video rounded-lg relative">
+    <div className="space-y-2 pt-0.5">
+      <section className="w-full bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 aspect-video rounded-lg relative ">
         <div
           className="absolute flex items-center justify-center top-1/2 -translate-y-1/2 left-6 p-1 rounded-full aspect-square bg-background/90 opacity-40 hover:opacity-80 transition-opacity cursor-pointer select-none"
           onClick={previousImage}
@@ -113,11 +132,11 @@ export const ImageSlider = ({ id }: { id: number }) => {
             />
           </svg>
         </div>
-      </div>
+      </section>
       <ul className="w-full rounded-lg relative">
         <div
           className="absolute flex items-center justify-center top-0 bottom-0 left-0 right-[100%-10px] p-1 z-20 bg-gray-800 opacity-30 hover:opacity-80 transition-opacity cursor-pointer select-none"
-          onClick={previousImage}
+          onClick={scrollContainerLeft}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -135,7 +154,7 @@ export const ImageSlider = ({ id }: { id: number }) => {
             />
           </svg>
         </div>
-        <div
+        <section
           ref={parentContainerRef}
           className="flex relative overflow-x-auto space-x-4 w-full bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 rounded-md scrollbar-hide snap-x px-6"
         >
@@ -159,8 +178,8 @@ export const ImageSlider = ({ id }: { id: number }) => {
               />
             </li>
           ))}
-        </div>
+        </section>
       </ul>
-    </>
+    </div>
   );
 };

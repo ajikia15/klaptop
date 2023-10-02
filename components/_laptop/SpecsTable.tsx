@@ -11,7 +11,7 @@ export default async function SpecsTable({ laptop }: any) {
           </tr>
         </thead>
         <tbody>
-          <tr className="bg-gray-800 border-b border-gray-700 hover:bg-gray-600">
+          <tr className="bg-secondary border-b border-gray-700 hover:bg-gray-600">
             <th
               scope="row"
               className="flex flex-row items-center px-6 py-4 font-medium whitespace-nowrap"
@@ -32,12 +32,12 @@ export default async function SpecsTable({ laptop }: any) {
               </div>
               ვიდეო ბარათი (GPU)
             </th>
-            <td className="px-6 py-4 text-white">
+            <td className="font-bold px-6 py-4 text-white">
               {laptop.gpu[1] === "T" ? "Nvidia" : "Radeon"}{" "}
               {laptop.gpu.toUpperCase()}
             </td>
           </tr>
-          <tr className="bg-gray-800 border-b border-gray-700 hover:bg-gray-600">
+          <tr className="bg-secondary border-b border-gray-700 hover:bg-gray-600">
             <th
               scope="row"
               className="flex flex-row items-center px-6 py-4 font-medium whitespace-nowrap"
@@ -61,14 +61,14 @@ export default async function SpecsTable({ laptop }: any) {
               </div>
               პროცესორი (CPU)
             </th>
-            <td className="px-6 py-4 text-white">
+            <td className="font-bold px-6 py-4 text-white">
               {laptop.cpu_is_intel ? "Intel Core i" : "Ryzen "}
               {laptop.cpu_num}
               {laptop.cpu_is_intel ? "-" : " "}
               {laptop.cpu_model}
             </td>
           </tr>
-          <tr className="bg-gray-800 border-b border-gray-700 hover:bg-gray-600">
+          <tr className="bg-secondary border-b border-gray-700 hover:bg-gray-600">
             <th
               scope="row"
               className="flex flex-row items-center px-6 py-4 font-medium whitespace-nowrap"
@@ -88,9 +88,11 @@ export default async function SpecsTable({ laptop }: any) {
               </div>
               ოპერატიული მეხსიერება (RAM)
             </th>
-            <td className="px-6 py-4 text-white">{laptop.ram_size}GB</td>
+            <td className="font-bold px-6 py-4 text-white">
+              {laptop.ram_size}GB
+            </td>
           </tr>
-          <tr className="bg-gray-800 border-b border-gray-700 hover:bg-gray-600">
+          <tr className="bg-secondary border-b border-gray-700 hover:bg-gray-600">
             <th
               scope="row"
               className="flex flex-row items-center px-6 py-4 font-medium whitespace-nowrap"
@@ -114,9 +116,11 @@ export default async function SpecsTable({ laptop }: any) {
               </div>
               მეხსიერება
             </th>
-            <td className="px-6 py-4 text-white">{laptop.storage_size}</td>
+            <td className="font-bold px-6 py-4 text-white">
+              {laptop.storage_size}
+            </td>
           </tr>
-          <tr className="bg-gray-800 border-b border-gray-700 hover:bg-gray-600">
+          <tr className="bg-secondary border-b border-gray-700 hover:bg-gray-600">
             <th
               scope="row"
               className="flex flex-row items-center px-6 py-4 font-medium whitespace-nowrap"
@@ -136,9 +140,11 @@ export default async function SpecsTable({ laptop }: any) {
               </div>
               მეხსიერების ტიპი
             </th>
-            <td className="px-6 py-4 text-white">{laptop.storage_type}</td>
+            <td className="font-bold px-6 py-4 text-white">
+              {laptop.storage_type}
+            </td>
           </tr>
-          <tr className="bg-gray-800 border-b border-gray-700 hover:bg-gray-600">
+          <tr className="bg-secondary border-b border-gray-700 hover:bg-gray-600">
             <th
               scope="row"
               className="flex flex-row items-center px-6 py-4 font-medium whitespace-nowrap"
@@ -160,11 +166,11 @@ export default async function SpecsTable({ laptop }: any) {
               </div>
               ეკრანის ზომა
             </th>
-            <td className="px-6 py-4 text-white">
+            <td className="font-bold px-6 py-4 text-white">
               {laptop.screen_inch} inches
             </td>
           </tr>
-          <tr className="bg-gray-800 border-b border-gray-700 hover:bg-gray-600">
+          <tr className="bg-secondary border-b border-gray-700 hover:bg-gray-600">
             <th
               scope="row"
               className="flex flex-row items-center px-6 py-4 font-medium whitespace-nowrap"
@@ -184,11 +190,11 @@ export default async function SpecsTable({ laptop }: any) {
               </div>
               ეკრანის რეზოლუცია
             </th>
-            <td className="px-6 py-4 text-white">
+            <td className="font-bold px-6 py-4 text-white">
               {laptop.resolution_px} ({laptop.screen_resolution})
             </td>
           </tr>
-          <tr className="bg-gray-800 border-b border-gray-700 hover:bg-gray-600">
+          <tr className="bg-secondary border-b border-gray-700 hover:bg-gray-600">
             <th
               scope="row"
               className="flex flex-row items-center px-6 py-4 font-medium whitespace-nowrap"
@@ -211,10 +217,12 @@ export default async function SpecsTable({ laptop }: any) {
               </div>
               ეკრანის სიხშირე
             </th>
-            <td className="px-6 py-4 text-white">{laptop.screen_hz}hz</td>
+            <td className="font-bold px-6 py-4 text-white">
+              {laptop.screen_hz}hz
+            </td>
           </tr>
           {laptop.original_box && (
-            <tr className="bg-gray-800 border-b border-gray-700 hover:bg-gray-600">
+            <tr className="bg-secondary border-b border-gray-700 hover:bg-gray-600">
               <th
                 scope="row"
                 className="flex flex-row items-center px-6 py-4 font-medium whitespace-nowrap"
@@ -234,13 +242,13 @@ export default async function SpecsTable({ laptop }: any) {
                 </div>
                 ყუთი
               </th>
-              <td className="px-6 py-4 text-white">
+              <td className="font-bold px-6 py-4 text-white">
                 {laptop.original_box ? "მოყვება" : "არ მოყვება"}
               </td>
             </tr>
           )}
 
-          <tr className="bg-gray-800 border-b border-gray-700 hover:bg-gray-600">
+          <tr className="bg-secondary border-b border-gray-700 hover:bg-gray-600">
             <th
               scope="row"
               className="flex flex-row items-center px-6 py-4 font-medium whitespace-nowrap"
@@ -262,10 +270,10 @@ export default async function SpecsTable({ laptop }: any) {
               </div>
               ვიდეო ბარათის მეხიერება (vram)
             </th>
-            <td className="px-6 py-4 text-white">{laptop.vram}</td>
+            <td className="font-bold px-6 py-4 text-white">{laptop.vram}</td>
           </tr>
           {laptop.visual_condition >= 7 && (
-            <tr className="bg-gray-800 border-b border-gray-700 hover:bg-gray-600">
+            <tr className="bg-secondary border-b border-gray-700 hover:bg-gray-600">
               <th
                 scope="row"
                 className="flex flex-row items-center px-6 py-4 font-medium whitespace-nowrap"
@@ -285,13 +293,13 @@ export default async function SpecsTable({ laptop }: any) {
                 </div>
                 ვიზუალური მდგომარეობა
               </th>
-              <td className="px-6 py-4 text-white">
+              <td className="font-bold px-6 py-4 text-white">
                 {laptop.visual_condition}/10
               </td>
             </tr>
           )}
           {laptop.working_condition >= 8 && (
-            <tr className="bg-gray-800 border-b border-gray-700 hover:bg-gray-600">
+            <tr className="bg-secondary border-b border-gray-700 hover:bg-gray-600">
               <th
                 scope="row"
                 className="flex flex-row items-center px-6 py-4 font-medium whitespace-nowrap"
@@ -311,12 +319,12 @@ export default async function SpecsTable({ laptop }: any) {
                 </div>
                 მუშა მდგომარეობა
               </th>
-              <td className="px-6 py-4 text-white">
+              <td className="font-bold px-6 py-4 text-white">
                 {laptop.working_condition}/10
               </td>
             </tr>
           )}
-          <tr className="bg-gray-800 border-b border-gray-700 hover:bg-gray-600">
+          <tr className="bg-secondary border-b border-gray-700 hover:bg-gray-600">
             <th
               scope="row"
               className="flex flex-row items-center px-6 py-4 font-medium whitespace-nowrap"
@@ -336,10 +344,12 @@ export default async function SpecsTable({ laptop }: any) {
               </div>
               გამოცემის წელი
             </th>
-            <td className="px-6 py-4 text-white">{laptop.release_year}</td>
+            <td className="font-bold px-6 py-4 text-white">
+              {laptop.release_year}
+            </td>
           </tr>
           {laptop.keyboard_type !== null && (
-            <tr className="bg-gray-800 border-b border-gray-700 hover:bg-gray-600">
+            <tr className="bg-secondary border-b border-gray-700 hover:bg-gray-600">
               <th
                 scope="row"
                 className="flex flex-row items-center px-6 py-4 font-medium whitespace-nowrap"
@@ -359,13 +369,13 @@ export default async function SpecsTable({ laptop }: any) {
                 </div>
                 კლავიატურის განათება
               </th>
-              <td className="px-6 py-4 text-white">
+              <td className="font-bold px-6 py-4 text-white">
                 {laptop.keyboard_type === "rgb" ? "RGB" : "თეთრი განათება"}
               </td>
             </tr>
           )}
           {laptop.additional !== null && (
-            <tr className="bg-gray-800 border-b border-gray-700 hover:bg-gray-600">
+            <tr className="bg-secondary border-b border-gray-700 hover:bg-gray-600">
               <th
                 scope="row"
                 className="flex flex-row items-center px-6 py-4 font-medium whitespace-nowrap"
@@ -385,7 +395,7 @@ export default async function SpecsTable({ laptop }: any) {
                 </div>
                 Face Id ან თითის ანაბეჭდი
               </th>
-              <td className="px-6 py-4 text-white">
+              <td className="font-bold px-6 py-4 text-white">
                 {laptop.face_id ? "Face Id" : "თითის ანაბეჭდის სკანერი"}
               </td>
             </tr>

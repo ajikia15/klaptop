@@ -21,22 +21,23 @@ export default async function page({
     .match({ id })
     .single();
   return (
-    <main className="w-11/12 py-8 mx-auto">
+    <main className="w-11/12 py-12 mx-auto">
       {data ? (
         <>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12">
-            <section className="flex flex-col gap-y-2 ">
-              <ImageSlider id={id} />
-              <div className="hidden lg:block">
-                <SpecsTable laptop={data} />
+            <section className="relative">
+              <div className="flex flex-col gap-y-2.5 xl:text-lg sticky top-2 left-0">
+                <ImageSlider id={id} />
+                <p>{data.description}</p>
               </div>
             </section>
-            <section className="relative">
-              <div className="flex flex-col gap-y-6 sticky top-0 left-0 ">
-                <h1 className="pt-4 text-4xl font-bold">
+
+            <section>
+              <div className="flex flex-col gap-y-6">
+                <h1 className="text-4xl font-bold">
                   {data.brand} {data.model}
                 </h1>
-                <div className="relative flex items-center justify-between p-3 shadow-2xl bg-secondary rounded-xl">
+                <div className=" flex items-center justify-between p-3 shadow-2xl bg-secondary rounded-xl">
                   <h2 className="py-2 text-2xl font-bold">
                     {data.price}
                     <span className="text-base">₾</span>
@@ -47,7 +48,7 @@ export default async function page({
                     </div>
                     <button className="button">
                       <div className="display">
-                        <div id="msg">იყიდე </div>
+                        <div id="msg">იყიდე</div>
                       </div>
                       <span></span>
                       <span></span>
@@ -56,7 +57,9 @@ export default async function page({
                 </div>
                 {/* {data.quantity} */}
                 {/* <h4>საწყობშია მხოლოდ 1 </h4> */}
-                {data.description}
+                <div className="hidden lg:block">
+                  <SpecsTable laptop={data} />
+                </div>
                 <Accordion type="single" collapsible className="lg:hidden">
                   <AccordionItem value="item-1">
                     <AccordionTrigger>იხილეთ სპეციფიკაციები</AccordionTrigger>
