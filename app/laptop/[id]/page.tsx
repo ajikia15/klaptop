@@ -45,8 +45,12 @@ export default async function page({
                     <div className="grid w-12 rounded-full aspect-square place-items-center text-primary">
                       <AddToFavBtn id={id} />
                     </div>
-                    <button className="button group">
-                      <p className="text-text font-bold text-lg">იყიდე</p>
+                    <button className="button">
+                      <div className="display">
+                        <div id="msg">იყიდე </div>
+                      </div>
+                      <span></span>
+                      <span></span>
                     </button>
                   </div>
                 </div>
