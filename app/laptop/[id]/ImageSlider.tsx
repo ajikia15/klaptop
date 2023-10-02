@@ -5,6 +5,7 @@ export const ImageSlider = ({ id }: { id: number }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [images, setImages] = useState<string[]>([]);
   const [activeImage, setActiveImage] = useState(0);
+
   const activeImageRef = useRef<HTMLLIElement | null>(null);
   const parentContainerRef = useRef<HTMLDivElement | null>(null);
 
@@ -65,6 +66,10 @@ export const ImageSlider = ({ id }: { id: number }) => {
     }
     setActiveImage((prevIndex) => prevIndex - 1);
   };
+
+  const [isScrolledToMaxLeft, setIsScrolledToMaxLeft] = useState(true);
+  const [isScrolledToMaxRight, setIsScrolledToMaxRight] = useState(false);
+
   const scrollContainerLeft = () => {
     if (parentContainerRef.current) {
       const parentContainer = parentContainerRef.current;
@@ -84,6 +89,24 @@ export const ImageSlider = ({ id }: { id: number }) => {
       });
     }
   };
+  useEffect(() => {
+    if (parentContainerRef.current) {
+      const parentContainer = parentContainerRef.current;
+      const handleScroll = () => {
+        setIsScrolledToMaxLeft(parentContainer.scrollLeft === 0);
+        setIsScrolledToMaxRight(
+          parentContainer.scrollLeft + parentContainer.clientWidth >=
+            parentContainer.scrollWidth
+        );
+      };
+
+      parentContainer.addEventListener("scroll", handleScroll);
+
+      return () => {
+        parentContainer.removeEventListener("scroll", handleScroll);
+      };
+    }
+  }, []);
   return (
     <div className="space-y-2 pt-0.5">
       <section className="w-full bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 aspect-video rounded-lg relative ">
@@ -135,7 +158,9 @@ export const ImageSlider = ({ id }: { id: number }) => {
       </section>
       <ul className="w-full rounded-lg relative">
         <div
-          className="absolute flex items-center justify-center top-0 bottom-0 left-0 right-[100%-10px] p-1 z-20 bg-gray-800 opacity-30 hover:opacity-80 transition-opacity cursor-pointer select-none"
+          className={`absolute flex items-center justify-center top-0 bottom-0 left-0 right-[100%-10px] p-1 z-20 bg-gray-800 opacity-30 hover:opacity-80 transition-opacity cursor-pointer select-none ${
+            !isScrolledToMaxLeft ? "" : "hidden"
+          }`}
           onClick={scrollContainerLeft}
         >
           <svg
@@ -179,6 +204,28 @@ export const ImageSlider = ({ id }: { id: number }) => {
             </li>
           ))}
         </section>
+        <div
+          className={`absolute flex items-center justify-center top-0 bottom-0 right-0 left-[100%-10px] p-1 z-20 bg-gray-800 opacity-30 hover:opacity-80 transition-opacity cursor-pointer select-none ${
+            !isScrolledToMaxRight ? "" : "hidden"
+          }`}
+          onClick={scrollContainerRight}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              d="m10 17l5-5l-5-5"
+            />
+          </svg>
+        </div>
       </ul>
     </div>
   );
