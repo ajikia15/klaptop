@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] });
 import { NextAuthProvider } from "./Providers";
 export const metadata: Metadata = {
   title: "კლაპტოპი",
-  description: "harro everinyan",
+  description: "ახალი და მეორადი ლეპტოპები საუკეთესო ფასად",
 };
 
 export default function RootLayout({
@@ -19,8 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body
-        className={`${inter.className} text-text bg-background relative`}>
+      <body className={`${inter.className} text-text bg-background relative`}>
         <NextAuthProvider>
           <main>
             <Navbar />
