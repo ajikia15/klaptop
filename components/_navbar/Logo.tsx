@@ -1,6 +1,11 @@
+import Link from "next/link";
+
 export default async function Logo() {
   return (
-    <div className="rounded-full flex max-w-[132px] items-center space-x-2 px-3 py-2 bg-primary bg-opacity-30">
+    <Link
+      href="/"
+      className="rounded-full  cursor-pointer flex max-w-[132px] items-center space-x-2 px-3 py-2 bg-primary bg-opacity-30"
+    >
       <svg
         className="text-primary"
         xmlns="http://www.w3.org/2000/svg"
@@ -14,6 +19,6 @@ export default async function Logo() {
         />
       </svg>
       <p className="text-base font-bold">Klaptopi</p>
-    </div>
+    </Link>
   );
 }

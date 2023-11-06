@@ -4,6 +4,9 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { supabase } from "@/utils/supabase";
 import { useRouter } from "next/navigation";
+import { errorType } from "@/components/_homepage/ErrorType";
+
+import ErrorPage from "@/components/_homepage/ErrorPage";
 interface iFilters {
   brands: string[];
   gpus: string[];
@@ -352,7 +355,7 @@ export default function page() {
   };
   return (
     <main>
-      {keyword && keyword.length > 0 && (
+      {/* {keyword && keyword.length > 0 && (
         <>
           <h1 className="font-bold text-2xl">თქვენ ეძებთ: {keyword}-ს</h1>
           <button onClick={handleKeywordErase}>
@@ -363,234 +366,261 @@ export default function page() {
             </p>
           </button>
         </>
-      )}
-
-      <ul>
-        <li>ფილტრები</li>
-        {isFiltersLoading ? (
-          <div role="status">
-            <svg
-              aria-hidden="true"
-              className="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-primary"
-              viewBox="0 0 100 101"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
-                fill="currentColor"
-              />
-              <path
-                d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-                fill="currentFill"
-              />
-            </svg>
-            <span className="sr-only">Loading...</span>
-          </div>
-        ) : (
-          <>
-            <li>Brand</li>
-            {filters.brands.map((brand) => (
-              <li key={brand} className="flex items-center space-x-2">
-                <Checkbox
-                  id={brand}
-                  className="border-text "
-                  checked={checkedFilters.brands.includes(brand) || false}
-                  onClick={() => handleBrandCheckboxChange(brand, "brands")}
-                />
-                <label
-                  htmlFor={brand}
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  {brand}
-                </label>
-              </li>
-            ))}
-            <li>GPU</li>
-            {filters.gpus.map((gpu) => (
-              <li key={gpu} className="flex items-center space-x-2">
-                <Checkbox
-                  id={gpu}
-                  className="border-text "
-                  checked={checkedFilters.gpus.includes(gpu) || false}
-                  onClick={() => handleBrandCheckboxChange(gpu, "gpus")}
-                />
-                <label
-                  htmlFor={gpu}
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  {gpu}
-                </label>
-              </li>
-            ))}
-            <li>Release Year</li>
-            {filters.releaseYears.map((releaseYear) => (
-              <li key={releaseYear} className="flex items-center space-x-2">
-                <Checkbox
-                  id={releaseYear}
-                  className="border-text "
-                  checked={
-                    checkedFilters.releaseYears.includes(releaseYear) || false
-                  }
-                  onClick={() =>
-                    handleBrandCheckboxChange(releaseYear, "releaseYears")
-                  }
-                />
-                <label
-                  htmlFor={releaseYear}
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  {releaseYear}
-                </label>
-              </li>
-            ))}
-            <li>Storage Size</li>
-            {filters.storageSizes.map((storageSize) => (
-              <li key={storageSize} className="flex items-center space-x-2">
-                <Checkbox
-                  id={storageSize}
-                  className="border-text "
-                  checked={
-                    checkedFilters.storageSizes.includes(storageSize) || false
-                  }
-                  onClick={() =>
-                    handleBrandCheckboxChange(storageSize, "storageSizes")
-                  }
-                />
-                <label
-                  htmlFor={storageSize}
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  {storageSize}
-                </label>
-              </li>
-            ))}
-            <li>Ram Size</li>
-            {filters.ramSizes.map((ramSize) => (
-              <li key={ramSize} className="flex items-center space-x-2">
-                <Checkbox
-                  id={ramSize}
-                  className="border-text "
-                  checked={checkedFilters.ramSizes.includes(ramSize) || false}
-                  onClick={() => handleBrandCheckboxChange(ramSize, "ramSizes")}
-                />
-                <label
-                  htmlFor={ramSize}
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  {ramSize}GB
-                </label>
-              </li>
-            ))}
-            <li>Storage Types</li>
-            {filters.storageTypes.map((storageType) => (
-              <li key={storageType} className="flex items-center space-x-2">
-                <Checkbox
-                  id={storageType}
-                  className="border-text "
-                  checked={
-                    checkedFilters.storageTypes.includes(storageType) || false
-                  }
-                  onClick={() =>
-                    handleBrandCheckboxChange(storageType, "storageTypes")
-                  }
-                />
-                <label
-                  htmlFor={storageType}
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  {storageType}
-                </label>
-              </li>
-            ))}
-            <li>Screen Size</li>
-            {filters.screenInchs.map((screenInch) => (
-              <li key={screenInch} className="flex items-center space-x-2">
-                <Checkbox
-                  id={screenInch}
-                  className="border-text "
-                  checked={
-                    checkedFilters.screenInchs.includes(screenInch) || false
-                  }
-                  onClick={() =>
-                    handleBrandCheckboxChange(screenInch, "screenInchs")
-                  }
-                />
-                <label
-                  htmlFor={screenInch}
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  {screenInch}"
-                </label>
-              </li>
-            ))}
-            <li>Screen Refresh Rate</li>
-            {filters.screenHzs.map((screenHz) => (
-              <li key={screenHz} className="flex items-center space-x-2">
-                <Checkbox
-                  id={screenHz}
-                  className="border-text "
-                  checked={checkedFilters.screenHzs.includes(screenHz) || false}
-                  onClick={() =>
-                    handleBrandCheckboxChange(screenHz, "screenHzs")
-                  }
-                />
-                <label
-                  htmlFor={screenHz}
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  {screenHz}Hz
-                </label>
-              </li>
-            ))}
-            <li>Screen Resolution</li>
-            {filters.screenResolutions.map((screenResolution) => (
-              <li
-                key={screenResolution}
-                className="flex items-center space-x-2"
-              >
-                <Checkbox
-                  id={screenResolution}
-                  className="border-text "
-                  checked={
-                    checkedFilters.screenResolutions.includes(
-                      screenResolution
-                    ) || false
-                  }
-                  onClick={() =>
-                    handleBrandCheckboxChange(
-                      screenResolution,
-                      "screenResolutions"
-                    )
-                  }
-                />
-                <label
-                  htmlFor={screenResolution}
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  {screenResolution}
-                </label>
-              </li>
-            ))}
-          </>
-        )}
-      </ul>
+      )} */}
 
       <ul>
         {isLoading ? (
           <p>Loading...</p>
         ) : laptops.length === 0 ? (
-          <p>Try again, no results</p>
+          <>
+            <ErrorPage context={errorType.noLaptops} />
+          </>
         ) : (
-          <ul>
-            {laptops.map((laptop: any) => (
-              <li key={laptop.id}>
-                <p>
-                  {laptop.brand} {laptop.model}
-                </p>
-              </li>
-            ))}
-          </ul>
+          <>
+            <section>
+              <li>ფილტრები</li>
+              {isFiltersLoading ? (
+                <div role="status">
+                  <svg
+                    aria-hidden="true"
+                    className="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-primary"
+                    viewBox="0 0 100 101"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                      fill="currentColor"
+                    />
+                    <path
+                      d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                      fill="currentFill"
+                    />
+                  </svg>
+                  <span className="sr-only">Loading...</span>
+                </div>
+              ) : (
+                <>
+                  <li>Brand</li>
+                  {filters.brands.map((brand) => (
+                    <li key={brand} className="flex items-center space-x-2">
+                      <Checkbox
+                        id={brand}
+                        className="border-text "
+                        checked={checkedFilters.brands.includes(brand) || false}
+                        onClick={() =>
+                          handleBrandCheckboxChange(brand, "brands")
+                        }
+                      />
+                      <label
+                        htmlFor={brand}
+                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                      >
+                        {brand}
+                      </label>
+                    </li>
+                  ))}
+                  <li>GPU</li>
+                  {filters.gpus.map((gpu) => (
+                    <li key={gpu} className="flex items-center space-x-2">
+                      <Checkbox
+                        id={gpu}
+                        className="border-text "
+                        checked={checkedFilters.gpus.includes(gpu) || false}
+                        onClick={() => handleBrandCheckboxChange(gpu, "gpus")}
+                      />
+                      <label
+                        htmlFor={gpu}
+                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                      >
+                        {gpu}
+                      </label>
+                    </li>
+                  ))}
+                  <li>Release Year</li>
+                  {filters.releaseYears.map((releaseYear) => (
+                    <li
+                      key={releaseYear}
+                      className="flex items-center space-x-2"
+                    >
+                      <Checkbox
+                        id={releaseYear}
+                        className="border-text "
+                        checked={
+                          checkedFilters.releaseYears.includes(releaseYear) ||
+                          false
+                        }
+                        onClick={() =>
+                          handleBrandCheckboxChange(releaseYear, "releaseYears")
+                        }
+                      />
+                      <label
+                        htmlFor={releaseYear}
+                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                      >
+                        {releaseYear}
+                      </label>
+                    </li>
+                  ))}
+                  <li>Storage Size</li>
+                  {filters.storageSizes.map((storageSize) => (
+                    <li
+                      key={storageSize}
+                      className="flex items-center space-x-2"
+                    >
+                      <Checkbox
+                        id={storageSize}
+                        className="border-text "
+                        checked={
+                          checkedFilters.storageSizes.includes(storageSize) ||
+                          false
+                        }
+                        onClick={() =>
+                          handleBrandCheckboxChange(storageSize, "storageSizes")
+                        }
+                      />
+                      <label
+                        htmlFor={storageSize}
+                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                      >
+                        {storageSize}
+                      </label>
+                    </li>
+                  ))}
+                  <li>Ram Size</li>
+                  {filters.ramSizes.map((ramSize) => (
+                    <li key={ramSize} className="flex items-center space-x-2">
+                      <Checkbox
+                        id={ramSize}
+                        className="border-text "
+                        checked={
+                          checkedFilters.ramSizes.includes(ramSize) || false
+                        }
+                        onClick={() =>
+                          handleBrandCheckboxChange(ramSize, "ramSizes")
+                        }
+                      />
+                      <label
+                        htmlFor={ramSize}
+                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                      >
+                        {ramSize}GB
+                      </label>
+                    </li>
+                  ))}
+                  <li>Storage Types</li>
+                  {filters.storageTypes.map((storageType) => (
+                    <li
+                      key={storageType}
+                      className="flex items-center space-x-2"
+                    >
+                      <Checkbox
+                        id={storageType}
+                        className="border-text "
+                        checked={
+                          checkedFilters.storageTypes.includes(storageType) ||
+                          false
+                        }
+                        onClick={() =>
+                          handleBrandCheckboxChange(storageType, "storageTypes")
+                        }
+                      />
+                      <label
+                        htmlFor={storageType}
+                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                      >
+                        {storageType}
+                      </label>
+                    </li>
+                  ))}
+                  <li>Screen Size</li>
+                  {filters.screenInchs.map((screenInch) => (
+                    <li
+                      key={screenInch}
+                      className="flex items-center space-x-2"
+                    >
+                      <Checkbox
+                        id={screenInch}
+                        className="border-text "
+                        checked={
+                          checkedFilters.screenInchs.includes(screenInch) ||
+                          false
+                        }
+                        onClick={() =>
+                          handleBrandCheckboxChange(screenInch, "screenInchs")
+                        }
+                      />
+                      <label
+                        htmlFor={screenInch}
+                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                      >
+                        {screenInch}"
+                      </label>
+                    </li>
+                  ))}
+                  <li>Screen Refresh Rate</li>
+                  {filters.screenHzs.map((screenHz) => (
+                    <li key={screenHz} className="flex items-center space-x-2">
+                      <Checkbox
+                        id={screenHz}
+                        className="border-text "
+                        checked={
+                          checkedFilters.screenHzs.includes(screenHz) || false
+                        }
+                        onClick={() =>
+                          handleBrandCheckboxChange(screenHz, "screenHzs")
+                        }
+                      />
+                      <label
+                        htmlFor={screenHz}
+                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                      >
+                        {screenHz}Hz
+                      </label>
+                    </li>
+                  ))}
+                  <li>Screen Resolution</li>
+                  {filters.screenResolutions.map((screenResolution) => (
+                    <li
+                      key={screenResolution}
+                      className="flex items-center space-x-2"
+                    >
+                      <Checkbox
+                        id={screenResolution}
+                        className="border-text "
+                        checked={
+                          checkedFilters.screenResolutions.includes(
+                            screenResolution
+                          ) || false
+                        }
+                        onClick={() =>
+                          handleBrandCheckboxChange(
+                            screenResolution,
+                            "screenResolutions"
+                          )
+                        }
+                      />
+                      <label
+                        htmlFor={screenResolution}
+                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                      >
+                        {screenResolution}
+                      </label>
+                    </li>
+                  ))}
+                </>
+              )}
+            </section>
+            <section>
+              {laptops.map((laptop: any) => (
+                <li key={laptop.id}>
+                  <p>
+                    {laptop.brand} {laptop.model}
+                  </p>
+                </li>
+              ))}
+            </section>
+          </>
         )}
       </ul>
     </main>

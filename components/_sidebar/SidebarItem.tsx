@@ -18,10 +18,9 @@ export function MainSidebarItem() {
             <Link
               href="/"
               className={`grid h-12 transition-opacity rounded-full cursor-pointer aspect-square place-items-center hover:opacity-80 ${
-                pathname == "/"
-                  ? "bg-primary"
-                  : "bg-secondary"
-              }`}>
+                pathname == "/" ? "bg-primary" : "bg-secondary"
+              }`}
+            >
               <div className="grid grid-cols-2 gap-1 h-1/2 aspect-square">
                 <div className="rounded-tl-sm bg-text aspect-square"></div>
                 <div className="rounded-tr-sm bg-text aspect-square"></div>
@@ -46,18 +45,18 @@ export function SecondarySidebarItem() {
         <Tooltip>
           <TooltipTrigger asChild>
             <Link
-              href="/"
-              className={`grid h-12 transition-opacity rounded-full cursor-pointer aspect-square place-items-center hover:opacity-80 ${
-                pathname == "/a"
-                  ? "bg-accent"
-                  : "bg-secondary"
-              }`}>
+              href="/search?keyword="
+              className={`grid h-12 transition-all rounded-full cursor-pointer aspect-square place-items-center hover:opacity-80 ${
+                pathname.includes("/search") ? "bg-accent" : "bg-secondary"
+              }`}
+            >
               <div className="grid place-items-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="28"
                   height="28"
-                  viewBox="0 0 24 24">
+                  viewBox="0 0 24 24"
+                >
                   <path
                     fill="currentColor"
                     fill-rule="evenodd"
@@ -69,7 +68,7 @@ export function SecondarySidebarItem() {
             </Link>
           </TooltipTrigger>
           <TooltipContent>
-            <p>მთავარი გვერდი</p>
+            <p>ფილტრები</p>
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>
