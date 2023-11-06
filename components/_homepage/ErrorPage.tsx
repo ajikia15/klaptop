@@ -18,7 +18,7 @@ export default function ErrorPage({ context }: { context?: errorType }) {
       <div className="glitchy_div text-[128px] " title="404">
         404
       </div>
-      <div className="text-2xl font-bold  ">
+      <div className="text-2xl font-bold  text-center">
         {context === errorType.noFavourites && (
           <div>
             ჯერ არ გაქვთ ლეპტოპი შენახული. &nbsp;

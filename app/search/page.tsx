@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { errorType } from "@/components/_homepage/ErrorType";
 
 import ErrorPage from "@/components/_homepage/ErrorPage";
+import Card from "@/components/_card/Card";
 interface iFilters {
   brands: string[];
   gpus: string[];
@@ -376,9 +377,14 @@ export default function page() {
             <ErrorPage context={errorType.noLaptops} />
           </>
         ) : (
-          <>
-            <section>
-              <li>ფილტრები</li>
+          <div className="flex flex-row gap-2 relative">
+            <section className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3">
+              {laptops.map((laptop: any) => (
+                <Card laptop={laptop} />
+              ))}
+            </section>
+            <section className="px-8 space-y-3 sticky">
+              <li className="text-lg text-third font-bold">ფილტრები</li>
               {isFiltersLoading ? (
                 <div role="status">
                   <svg
@@ -401,12 +407,12 @@ export default function page() {
                 </div>
               ) : (
                 <>
-                  <li>Brand</li>
+                  <li className="font-bold text-xl">ბრენდი</li>
                   {filters.brands.map((brand) => (
                     <li key={brand} className="flex items-center space-x-2">
                       <Checkbox
                         id={brand}
-                        className="border-text "
+                        className="border-text"
                         checked={checkedFilters.brands.includes(brand) || false}
                         onClick={() =>
                           handleBrandCheckboxChange(brand, "brands")
@@ -414,7 +420,7 @@ export default function page() {
                       />
                       <label
                         htmlFor={brand}
-                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                        className=" font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                       >
                         {brand}
                       </label>
@@ -425,13 +431,13 @@ export default function page() {
                     <li key={gpu} className="flex items-center space-x-2">
                       <Checkbox
                         id={gpu}
-                        className="border-text "
+                        className="border-text"
                         checked={checkedFilters.gpus.includes(gpu) || false}
                         onClick={() => handleBrandCheckboxChange(gpu, "gpus")}
                       />
                       <label
                         htmlFor={gpu}
-                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                        className=" font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                       >
                         {gpu}
                       </label>
@@ -445,7 +451,7 @@ export default function page() {
                     >
                       <Checkbox
                         id={releaseYear}
-                        className="border-text "
+                        className="border-text"
                         checked={
                           checkedFilters.releaseYears.includes(releaseYear) ||
                           false
@@ -456,7 +462,7 @@ export default function page() {
                       />
                       <label
                         htmlFor={releaseYear}
-                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                        className=" font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                       >
                         {releaseYear}
                       </label>
@@ -470,7 +476,7 @@ export default function page() {
                     >
                       <Checkbox
                         id={storageSize}
-                        className="border-text "
+                        className="border-text"
                         checked={
                           checkedFilters.storageSizes.includes(storageSize) ||
                           false
@@ -481,7 +487,7 @@ export default function page() {
                       />
                       <label
                         htmlFor={storageSize}
-                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                        className=" font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                       >
                         {storageSize}
                       </label>
@@ -492,7 +498,7 @@ export default function page() {
                     <li key={ramSize} className="flex items-center space-x-2">
                       <Checkbox
                         id={ramSize}
-                        className="border-text "
+                        className="border-text"
                         checked={
                           checkedFilters.ramSizes.includes(ramSize) || false
                         }
@@ -502,7 +508,7 @@ export default function page() {
                       />
                       <label
                         htmlFor={ramSize}
-                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                        className=" font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                       >
                         {ramSize}GB
                       </label>
@@ -516,7 +522,7 @@ export default function page() {
                     >
                       <Checkbox
                         id={storageType}
-                        className="border-text "
+                        className="border-text"
                         checked={
                           checkedFilters.storageTypes.includes(storageType) ||
                           false
@@ -527,7 +533,7 @@ export default function page() {
                       />
                       <label
                         htmlFor={storageType}
-                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                        className=" font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                       >
                         {storageType}
                       </label>
@@ -541,7 +547,7 @@ export default function page() {
                     >
                       <Checkbox
                         id={screenInch}
-                        className="border-text "
+                        className="border-text"
                         checked={
                           checkedFilters.screenInchs.includes(screenInch) ||
                           false
@@ -552,7 +558,7 @@ export default function page() {
                       />
                       <label
                         htmlFor={screenInch}
-                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                        className=" font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                       >
                         {screenInch}"
                       </label>
@@ -563,7 +569,7 @@ export default function page() {
                     <li key={screenHz} className="flex items-center space-x-2">
                       <Checkbox
                         id={screenHz}
-                        className="border-text "
+                        className="border-text"
                         checked={
                           checkedFilters.screenHzs.includes(screenHz) || false
                         }
@@ -573,7 +579,7 @@ export default function page() {
                       />
                       <label
                         htmlFor={screenHz}
-                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                        className=" font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                       >
                         {screenHz}Hz
                       </label>
@@ -587,7 +593,7 @@ export default function page() {
                     >
                       <Checkbox
                         id={screenResolution}
-                        className="border-text "
+                        className="border-text"
                         checked={
                           checkedFilters.screenResolutions.includes(
                             screenResolution
@@ -602,7 +608,7 @@ export default function page() {
                       />
                       <label
                         htmlFor={screenResolution}
-                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                        className=" font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                       >
                         {screenResolution}
                       </label>
@@ -611,16 +617,7 @@ export default function page() {
                 </>
               )}
             </section>
-            <section>
-              {laptops.map((laptop: any) => (
-                <li key={laptop.id}>
-                  <p>
-                    {laptop.brand} {laptop.model}
-                  </p>
-                </li>
-              ))}
-            </section>
-          </>
+          </div>
         )}
       </ul>
     </main>
