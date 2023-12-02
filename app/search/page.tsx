@@ -8,6 +8,22 @@ import { errorType } from "@/components/_homepage/ErrorType";
 
 import ErrorPage from "@/components/_homepage/ErrorPage";
 import Card from "@/components/_card/Card";
+type TLaptopCard = {
+  id: number;
+  brand: string;
+  price: number;
+  model: string;
+  gpu: string;
+  cpu_model: string;
+  cpu_num: number;
+  cpu_is_intel: boolean;
+  ram_size: number;
+  storage_size: string;
+};
+
+type TCardProps = {
+  laptop: TLaptopCard;
+};
 interface iFilters {
   brands: string[];
   gpus: string[];
@@ -52,7 +68,11 @@ export default function page() {
   const [isLoading, setIsLoading] = useState(true);
   const [laptops, setLaptops] = useState<any>([]);
   const fetchLaptops = async () => {
-    let query = supabase.from("laptops").select("id,searchkey,brand,model,gpu");
+    let query = supabase
+      .from("laptops")
+      .select(
+        "id,searchkey,brand,model,gpu,cpu_is_intel,cpu_num,cpu_model,ram_size,storage_size,price"
+      );
     if (keyword) {
       query = query.filter("searchkey", "ilike", `%${keyword}%`);
     }
@@ -378,8 +398,8 @@ export default function page() {
           </>
         ) : (
           <div className="flex flex-row gap-2 relative">
-            <section className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3">
-              {laptops.map((laptop: any) => (
+            <section className="grid grid-cols-1 xl:grid-rows-2 lg:grid-cols-2 xl:grid-cols-3 gap-3">
+              {laptops.map((laptop: TLaptopCard) => (
                 <Card laptop={laptop} />
               ))}
             </section>
