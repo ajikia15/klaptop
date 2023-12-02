@@ -17,7 +17,7 @@ export default function Hero() {
   return (
     <div
       ref={heroRef}
-      className="grid grid-cols-[11fr_7fr] gap-x-6 lg:gap-x-8 xl:gap-x-12 py-6 lg:py-12 xl:py-16"
+      className="grid grid-cols-[11fr_7fr] gap-x-6 lg:gap-x-8 xl:gap-x-12 py-6 lg:py-12 xl:py-12"
     >
       <section
         ref={glassRef}
